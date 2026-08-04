@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Street Food Live Overlay</title>
+
+<style>
+html,body{
+    margin:0;
+    padding:0;
+    overflow:hidden;
+    background:transparent;
+    width:100%;
+    height:100%;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+#box{
+    position:absolute;
+    left:50%;
+    bottom:60px;
+    transform:translateX(-50%);
+    background:rgba(0,0,0,.55);
+    color:white;
+    padding:18px 40px;
+    border-radius:18px;
+    font-size:54px;
+    font-weight:bold;
+    white-space:nowrap;
+    opacity:0;
+    transition:all .6s ease;
+    border:2px solid rgba(255,255,255,.18);
+    backdrop-filter:blur(6px);
+}
+
+.show{
+    opacity:1!important;
+    transform:translateX(-50%) translateY(0)!important;
+}
+
+.hide{
+    opacity:0!important;
+    transform:translateX(-50%) translateY(35px)!important;
+}
+
+#live{
+    position:absolute;
+    top:35px;
+    left:35px;
+    background:#e40000;
+    color:white;
+    padding:10px 18px;
+    border-radius:12px;
+    font-size:34px;
+    font-weight:bold;
+    animation:pulse 1s infinite;
+}
+
+@keyframes pulse{
+0%{opacity:1;}
+50%{opacity:.45;}
+100%{opacity:1;}
+}
+</style>
+</head>
+
+<body>
+
+<div id="live">🔴 LIVE</div>
+
+<div id="box"></div>
+
+<script>
+
+const messages=[
+
+"🔥 TYPE FIRE if you're hungry!",
+"❤️ Rate this food 1–10",
+"🧀 More CHEESE? YES or NO",
+"🍜 Guess the price!",
+"🌎 Where are you watching from?",
+"👍 Smash the LIKE button!",
+"🥚 How many eggs?",
+"😋 Would you eat this?",
+"🔥 Look at that WOK FIRE!",
+"💬 Which country are you from?",
+"🍖 Beef or Chicken?",
+"🌶️ Spicy or Not?",
+"🍳 Guess the next ingredient!",
+"👀 Watch until the END!",
+"⭐ Rate this chef!",
+"🤤 Delicious or Crazy?",
+"🍜 Favorite Chinese street food?",
+"💛 Thanks for watching!",
+"👇 Don't leave yet...",
+"🎉 More amazing food is coming!",
+
+];
+
+let i=0;
+
+const box=document.getElementById("box");
+
+function changeText(){
+
+box.className="hide";
+
+setTimeout(()=>{
+
+box.innerHTML=messages[i];
+
+box.className="show";
+
+i++;
+
+if(i>=messages.length)i=0;
+
+},600);
+
+}
+
+changeText();
+
+setInterval(changeText,8000);
+
+</script>
+
+</body>
+</html>
